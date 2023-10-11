@@ -7,7 +7,7 @@ export default function Home() {
   const { register, handleSubmit } = useForm();
   const onSubmit = async (d) => {
     fetch('/api/create?name=' + d.name)
-    .then(r => alert(r.data));
+      .then(r => alert(r.data));
   }
   const names = useSWR('/api/all', fetcher).data;
   return (
@@ -15,8 +15,10 @@ export default function Home() {
       <main>
         <section className="w-1/2 mx-auto bg-gray-200 rounded-xl p-10 mt-16">
           <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-5">
-            <label htmlFor="name">name (required)</label>
-            <input className="bg-gray-200 border-b-2 border-gray-400 focus-within:outline-none focus-within:border-gray-600" type="text" id="name" placeholder="Orpheus Haxx" {...register("name", { required: true })} />
+            <label htmlFor="name">Institution Name (required)</label>
+            <input className="bg-gray-200 border-b-2 border-gray-400 focus-within:outline-none focus-within:border-gray-600" type="text" id="name" placeholder="Harvard" {...register("name", { required: true })} />
+            <h1>Please upload a picture of the Institution's response.</h1>
+            <input className="bg-gray-200 border-b-2 border-gray-400 focus-within:outline-none focus-within:border-gray-600" type="image" id="name" {...register("name", { required: true })} />
             <input type="submit" className="bg-blue-500 text-white py-2 hover:bg-blue-600 rounded-xl font-bold" value="Submit"/>
           </form>
         </section>
