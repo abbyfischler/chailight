@@ -1,21 +1,17 @@
-const AirtablePlus = require("airtable-plus");
+const AirtablePlus = require("airtable-plus")
 
 const airtable = new AirtablePlus({
     baseID: 'applndNXqBhD85DQt',
     apiKey: process.env.AIRTABLE_API_KEY,
-    tableName: "Names"
-});
+    tableName: "chai"
+})
 
 export default async (req, res) => {
     if (req.query.name) {
-        // Use the correct field names in the object
-        const record = await airtable.create({
-            institution_name: req.query.institution_name,
-            institution_picture: req.query.institution_picture
-        });
-
-        res.status(200).send(`Created record ${record.id}`);
+        const record = await airtable.create({institution_name: req.query.id},{institution_picture: req.query.id});
+    
+        res.status(200).send(`Created record ${record.id}`)
     } else {
-        res.status(400).send(`Couldn't create record.`);
+        res.status(400).send(`Couldn't create record.`)
     }
-};
+}
