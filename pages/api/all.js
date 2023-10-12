@@ -3,7 +3,7 @@ const AirtablePlus = require("airtable-plus")
 const airtable = new AirtablePlus({
     baseID: 'applndNXqBhD85DQt',
     apiKey: process.env.AIRTABLE_API_KEY,
-    tableName: "Names",
+    tableName: "chai",
     camelCase: true,
     transform: r => {
         delete r.id

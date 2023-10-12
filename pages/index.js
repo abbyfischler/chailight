@@ -6,8 +6,24 @@ import fetcher from '../lib/fetcher'
 
 export default function Home() {
   const { register, handleSubmit } = useForm();
+  const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+  });
   const onSubmit = async (d) => {
-    axios.get(`/api/create?name=${d.institution_name}&picture=${d.institution_picture}`)
+    const picture = d.institution_picture[0];
+    const base64Pic = await toBase64(picture);
+    console.log(picture);
+    axios.post('/api/create', {
+      institution_name: d.institution_name,
+      institution_picture: {
+        type: picture.type,
+        
+        url: base64Pic
+      }
+    }, {headers: {"Content-Type": "application/json"}})
       .then(r => alert(r.data));
   }
   const names = useSWR('/api/all', fetcher).data;
@@ -25,9 +41,9 @@ In order to hold our institutions accountable, we need your help. Please upload 
 
 
           <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-5">
-          <label htmlFor="institution_name" className="font-bold">Institution Name (required)</label>
+          <label htmlFor="institution_name">Institution Name (required)</label>
             <input className="bg-gray-200 border-b-2 font-bold border-gray-400 focus-within:outline-none focus-within:border-gray-600 text-black" type="text" id="institution_name" placeholder="Harvard" {...register('institution_name', { required: true })} />
-            <label htmlFor="`institution_picture`">Please upload a picture of the Institution's response.</label>
+            <label htmlFor="institution_picture">Please upload a picture of the Institution's response.</label>
             <input className="text-black bg-gray-200 border-b-2 border-gray-400 focus-within:outline-none focus-within:border-gray-600" type="file" id="institution_picture" {...register('institution_picture', { required: true })} />
            
             <input type="submit" className="bg-blue-500  py-2 hover:bg-blue-600 rounded-xl" value="Submit"/>
