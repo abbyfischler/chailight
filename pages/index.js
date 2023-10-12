@@ -26,8 +26,8 @@ In order to hold our institutions accountable, we need your help. Please upload 
 
           <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-5">
           <label htmlFor="institution_name" className='font-bold '>Institution Name (required)</label>
-            <input className="bg-gray-200 border-b-2 font-bold border-gray-400 focus-within:outline-none focus-within:border-gray-600 text-black" type="text" id="name" placeholder="Harvard" {...register("institution_name", { required: true })} />
-            <label htmlFor="`institution_picture`" className='font-bold '>Please upload a picture of the Institution's response.</label>
+            <input className="bg-gray-200 border-b-2 font-bold border-gray-400 focus-within:outline-none focus-within:border-gray-600 text-black" type="text" id="institution_name" placeholder="Harvard" {...register("institution_name", { required: true })} />
+            <label htmlFor="`institution_picture`">Please upload a picture of the Institution's response.</label>
             <input className="text-black bg-gray-200 border-b-2 border-gray-400 focus-within:outline-none focus-within:border-gray-600" type="file" id="institution_picture" {...register("institution_picture", { required: true })} />
            
             <input type="submit" className="bg-blue-500  py-2 hover:bg-blue-600 rounded-xl" value="Submit"/>
