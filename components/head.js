@@ -1,13 +1,12 @@
 import Head from 'next/head'
 
 export default function HeadObject({children}) {
-    const title = "The Perfect Next.js Theme";
-    const description = "This is the perfect Next.js theme that you should use instead of create-next-app.";
+    const title = "Chailight";
+    const description = "To ensure institutions are held accountable for their response to antisemitism and recent attacks in Israel, we seek your assistance in uploading email screenshots illustrating their stance, as this data will be used to compile a report shedding light on any institutions failing to fulfill their responsibility, emphasizing the importance of breaking the silence.";
     const searchBarColor = "#ffffff"; // This is your Safari 15 Search Bar Color in Light Mode
     //const darkSearchBarColor = "#000000"; // This is your Safari 15 Search Bar Color in Dark Mode (optional)
     const keywords = "put some fun keywords here";
-    const author = "Sarthak Mohanty";
-    const twitter = "@sarthaktexas";
+    const author = "Abby Fischler";
     const url = "http://localhost:3000"; // This is your og:url or domain (optional but recommended)
     //const image = "/ogimage.png"; // This is your OpenGraph image
     return (
@@ -26,9 +25,6 @@ export default function HeadObject({children}) {
             <meta property="og:title" content={title} />
             <meta property="og:description" content={description} />
             {/* <meta property="og:image" content={image} /> */}
-            <meta name="twitter:card" content="summary" />
-            <meta name="twitter:site" content={twitter} />
-            <meta name="twitter:creator" content={twitter} />
             {/* Add analytics here */}
             {children}
         </Head>

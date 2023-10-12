@@ -1,7 +1,7 @@
 const AirtablePlus = require("airtable-plus")
 
 const airtable = new AirtablePlus({
-    baseID: 'appMyPPfesDHqUdE1',
+    baseID: 'applndNXqBhD85DQt',
     apiKey: process.env.AIRTABLE_API_KEY,
     tableName: "Names",
     camelCase: true,
