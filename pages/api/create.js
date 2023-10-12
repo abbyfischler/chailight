@@ -8,8 +8,8 @@ const airtable = new AirtablePlus({
 
 export default async (req, res) => {
     if (req.query.name) {
-        const record = await airtable.create({ Name: req.query.name});
-        // should I add this: , Institution_picture: req.query.Institution_picture
+        const record = await airtable.create({institution_name: req.query.institution_name},{institution_picture: req.query.institution_picture});
+    
         res.status(200).send(`Created record ${record.id}`)
     } else {
         res.status(400).send(`Couldn't create record.`)
