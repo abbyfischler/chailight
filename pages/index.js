@@ -3,9 +3,12 @@ import Link from "next/link";
 import axios from "axios";
 import useSWR from "swr";
 import fetcher from "../lib/fetcher";
-let { uploadToS3 } = useS3Upload();
+
+import {useS3Upload} from "next-s3-upload"
 
 export default function Home() {
+  let { uploadToS3 } = useS3Upload();
+  
   const { register, handleSubmit } = useForm();
   const onSubmit = async (d) => {
     let { url } = await uploadToS3(d.institution_picture[0]);
@@ -57,10 +60,7 @@ export default function Home() {
               id="institution_picture"
               {...register("institution_picture", { required: true })}
             />
-            <div {...getRootProps({ className: 'dropzone' })}>
-              <input {...getInputProps()} />
-              <p>Drag 'n' drop some files here, or click to select files</p>
-            </div>
+           
             <input
               type="submit"
               className="bg-blue-500  py-2 hover:bg-blue-600 rounded-xl"
@@ -70,7 +70,7 @@ export default function Home() {
         </section>
         <section className="flex flex-col bg-gray-200 w-1/2 mx-auto rounded-xl p-10 mt-16">
           <h1 className="font-bold text-xl mb-2">Institutions</h1>
-          {acceptedFiles}
+        
           {
             institutions?.map(({ name }) => (
               <p className="font-mono">- {name}</p>
