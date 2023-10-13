@@ -17,6 +17,7 @@ export default function Home() {
     ).then((r) => alert(r.data));
   };
   const institutions = useSWR("/api/all", fetcher).data;
+
   return (
     <div className="dark:bg-black text-black ">
       <main>
@@ -72,8 +73,8 @@ export default function Home() {
           <h1 className="font-bold text-xl mb-2">Institutions</h1>
         
           {
-            institutions?.map(({ name }) => (
-              <p className="font-mono">- {name}</p>
+            institutions?.map(({ institution_name }) => (
+              <p className="font-mono">- {institution_name}</p>
             ))
           }
         </section>
