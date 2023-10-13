@@ -17,7 +17,8 @@ export default function Home() {
     ).then((r) => alert(r.data));
   };
   const institutions = useSWR("/api/all", fetcher).data;
-
+  
+  console.log("VALUE", institutions)
   return (
     <div className="dark:bg-black text-black ">
       <main>
@@ -71,14 +72,17 @@ export default function Home() {
         </section>
         <section className="flex flex-col bg-gray-200 w-1/2 mx-auto rounded-xl p-10 mt-16">
           <h1 className="font-bold text-xl mb-2">Institutions</h1>
-        
+
           {
             institutions?.map(({ institution_name }) => (
               <p className="font-mono">- {institution_name}</p>
             ))
+            
           }
+       
         </section>
       </main>
     </div>
   );
 }
+
