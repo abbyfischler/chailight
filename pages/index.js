@@ -4,21 +4,25 @@ import axios from "axios";
 import useSWR from "swr";
 import fetcher from "../lib/fetcher";
 
-import {useS3Upload} from "next-s3-upload"
+import { useS3Upload } from "next-s3-upload";
 
 export default function Home() {
   let { uploadToS3 } = useS3Upload();
-  
+
   const { register, handleSubmit } = useForm();
   const onSubmit = async (d) => {
     let { url } = await uploadToS3(d.institution_picture[0]);
-    axios.post(
-      `/api/create?institution_name=${d.institution_name}&institution_picture=${encodeURIComponent(url)}`
-    ).then((r) => alert(r.data));
+    axios
+      .post(
+        `/api/create?institution_name=${
+          d.institution_name
+        }&institution_picture=${encodeURIComponent(url)}`,
+      )
+      .then((r) => alert(r.data));
   };
   const institutions = useSWR("/api/all", fetcher).data;
-  
-  console.log("VALUE", institutions)
+
+  console.log("VALUE", institutions);
   return (
     <div className="dark:bg-black text-black ">
       <main>
@@ -62,7 +66,7 @@ export default function Home() {
               id="institution_picture"
               {...register("institution_picture", { required: true })}
             />
-           
+
             <input
               type="submit"
               className="bg-blue-500  py-2 hover:bg-blue-600 rounded-xl"
@@ -73,16 +77,11 @@ export default function Home() {
         <section className="flex flex-col bg-gray-200 w-1/2 mx-auto rounded-xl p-10 mt-16">
           <h1 className="font-bold text-xl mb-2">Institutions</h1>
 
-          {
-            institutions?.map(({ institution_name }) => (
-              <p className="font-mono">- {institution_name}</p>
-            ))
-            
-          }
-       
+          {institutions?.map(({ institution_name }) => (
+            <p className="font-mono">- {institution_name}</p>
+          ))}
         </section>
       </main>
     </div>
   );
 }
-
