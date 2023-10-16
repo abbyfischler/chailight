@@ -12,6 +12,6 @@ const airtable = new AirtablePlus({
 })
 
 export default async (_, res) => {
-    const names = await airtable.read();
-    res.json(names)
+    const institutions = await airtable.read();
+    res.json(institutions)
 }

@@ -11,7 +11,8 @@ export default function Home() {
 
   const { register, handleSubmit } = useForm();
   const onSubmit = async (d) => {
-    let { url } = await uploadToS3(d.institution_picture[0]);
+    let apple = await uploadToS3(d.institution_picture[0]);
+    console.log(apple)
     axios
       .post(
         `/api/create?institution_name=${
@@ -22,7 +23,6 @@ export default function Home() {
   };
   const institutions = useSWR("/api/all", fetcher).data;
 
-  console.log("VALUE", institutions);
   return (
     <div className="dark:bg-black text-black ">
       <main>
@@ -77,8 +77,8 @@ export default function Home() {
         <section className="flex flex-col bg-gray-200 w-1/2 mx-auto rounded-xl p-10 mt-16">
           <h1 className="font-bold text-xl mb-2">Institutions</h1>
 
-          {institutions?.map(({ institution_name }) => (
-            <p className="font-mono">- {institution_name}</p>
+          {institutions?.map(( {institutionName} ) => (
+            <a className="font-mono" href="">- {institutionName}</a>
           ))}
         </section>
       </main>
