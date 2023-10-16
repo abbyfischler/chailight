@@ -77,8 +77,10 @@ export default function Home() {
         <section className="flex flex-col bg-gray-200 w-1/2 mx-auto rounded-xl p-10 mt-16">
           <h1 className="font-bold text-xl mb-2">Institutions</h1>
 
-          {institutions?.map(( {institutionName} ) => (
-            <a className="font-mono" href="">- {institutionName}</a>
+          {institutions?.map(({ institutionName }) => (
+            <a className="font-mono" href="">
+              - {institutionName}
+            </a>
           ))}
         </section>
       </main>
