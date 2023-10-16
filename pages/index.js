@@ -11,8 +11,8 @@ export default function Home() {
 
   const { register, handleSubmit } = useForm();
   const onSubmit = async (d) => {
-    let apple = await uploadToS3(d.institution_picture[0]);
-    console.log(apple)
+    let url = await uploadToS3(d.institution_picture[0]);
+
     axios
       .post(
         `/api/create?institution_name=${

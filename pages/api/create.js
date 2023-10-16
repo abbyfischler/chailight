@@ -6,6 +6,7 @@ const airtable = new AirtablePlus({
   tableName: "chai"
 })
 
+
 export default async (req, res) => {
   if (req.query.institution_name && req.query.institution_picture) {
     const record = await airtable.create({
